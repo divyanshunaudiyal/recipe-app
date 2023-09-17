@@ -1,0 +1,21 @@
+{
+  "name": "recipe",
+  "version": "1.0.0",
+  "description": "recipe app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Divyanshu Naudiyal",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3",
+    "sass": "^1.66.1"
+  },
+  "dependencies": {
+    "core-js": "^3.32.2",
+    "regenerator-runtime": "^0.14.0"
+  }
+}
