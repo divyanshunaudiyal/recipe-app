@@ -4,6 +4,7 @@ export const state = {
   recipe: {},
 };
 
+//function for fetching data from api amd update state object
 export const loadRecipe = async function (id) {
   try {
     const res = await fetch(
