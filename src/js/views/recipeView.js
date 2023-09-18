@@ -1,4 +1,4 @@
-import icons from 'url:../img/icons.svg';
+import icons from 'url:../../img/icons.svg';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
@@ -7,6 +7,7 @@ class RecipeView {
   //function to initialize #data
   render(data) {
     this.#data = data;
+
     this.#clear();
     this.#parentElement.insertAdjacentHTML(
       'afterbegin',
@@ -23,7 +24,7 @@ class RecipeView {
       <use href="${icons}svg#icon-loader"></use>
     </svg>
     </div> `;
-    this.#parentElement.innerHTML = '';
+    this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -86,21 +87,7 @@ class RecipeView {
           <ul class="recipe__ingredient-list">
 
           ${this.#data.ingredients
-            .map(ing => {
-              return `
-              <li class="recipe__ingredient">
-                  <svg class="recipe__icon">
-                    <use href="${icons}svg#icon-check"></use>
-                  </svg>
-                  <div class="recipe__quantity">${ing.quantity}</div>
-                  <div class="recipe__description">
-                    <span class="recipe__unit">${ing.unit}</span>
-                    ${ing.description}
-                  </div>
-              </li>
-
-            `;
-            })
+            .map(ing => this.#generateMarkupIngredient(ing))
             .join('')};
             
 
@@ -127,6 +114,21 @@ class RecipeView {
             </svg>
           </a>
         </div>`;
+  }
+  #generateMarkupIngredient(ing) {
+    return `
+        <li class="recipe__ingredient">
+            <svg class="recipe__icon">
+              <use href="${icons}svg#icon-check"></use>
+            </svg>
+            <div class="recipe__quantity">${ing.quantity}</div>
+            <div class="recipe__description">
+              <span class="recipe__unit">${ing.unit}</span>
+              ${ing.description}
+            </div>
+        </li>
+
+      `;
   }
 }
 

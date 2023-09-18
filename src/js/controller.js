@@ -5,17 +5,7 @@ import 'regenerator-runtime/runtime';
 
 import recipeview from './views/recipeView.js';
 
-console.log(icons);
-
 const recipeContainer = document.querySelector('.recipe');
-
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
 
 ///////////////////////////////////////
 
@@ -24,7 +14,7 @@ async function controlRecipes() {
     const id = window.location.hash.slice(1);
     console.log(id);
     if (!id) return;
-    renderSpinner(recipeContainer);
+    recipeview.renderSpinner();
 
     //loading recipe
 
@@ -37,5 +27,9 @@ async function controlRecipes() {
   }
 }
 
-window.addEventListener('hashchange', controlRecipes);
-window.addEventListener('load', controlRecipes);
+// window.addEventListener('hashchange', controlRecipes);
+// window.addEventListener('load', controlRecipes);
+
+['load', 'hashchange'].forEach(ev =>
+  window.addEventListener(ev, controlRecipes)
+);
