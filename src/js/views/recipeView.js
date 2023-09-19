@@ -3,6 +3,8 @@ import icons from 'url:../../img/icons.svg';
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #errorMessage = " Recipe couldn't be found ";
+  #message = ' ';
 
   //function to initialize #data
   render(data) {
@@ -28,6 +30,38 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  //render error message
+  renderError(msg = this.#errorMessage) {
+    const markup = `
+    <div class="error">
+            <div>
+              <svg>
+                <use href="${icons}svg#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>------------${msg}------------- </p>
+          </div>
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  //render success message
+  renderMessage(msg = this.#message) {
+    const markup = `
+    <div class="message">
+            <div>
+              <svg>
+                <use href="${icons}svg#icon-smile"></use>
+              </svg>
+            </div>
+            <p>------------${msg}------------- </p>
+          </div>
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
   addHandlerRender(handler) {
     // window.addEventListener('hashchange', controlRecipes);
     // window.addEventListener('load', controlRecipes);
@@ -38,7 +72,7 @@ class RecipeView {
   #generateMarkup() {
     return `
     <figure class="recipe__fig">
-          <img src="${this.#data.sourceUrl}" alt="${
+          <img src="${this.#data.image}" alt="${
       this.#data.title
     }" class="recipe__img" />
           <h1 class="recipe__title">
@@ -51,8 +85,10 @@ class RecipeView {
             <svg class="recipe__info-icon">
               <use href="${icons}svg#icon-clock"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--minutes">45</span>
-            <span class="recipe__info-text">${this.#data.cookingTime}</span>
+            <span class="recipe__info-data recipe__info-data--minutes">${
+              this.#data.cookingTime
+            }</span>
+            <span class="recipe__info-text">minutes</span>
           </div>
           <div class="re cipe__info">
             <svg class="recipe__info-icon">
