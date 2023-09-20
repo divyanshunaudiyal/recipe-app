@@ -9,7 +9,7 @@ export const state = {
   },
 };
 
-//function for fetching data from api amd update state object
+//function for fetching data from api and update state object
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}${id}`);
@@ -26,7 +26,7 @@ export const loadRecipe = async function (id) {
       ingredients: recipe.ingredients,
     };
   } catch (err) {
-    throw err; //to show error from controller use throw err
+    throw err; //to show error from controller
   }
 };
 
