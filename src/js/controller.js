@@ -6,6 +6,7 @@ import 'regenerator-runtime/runtime';
 import recipeview from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 ///////////////////////////////////////
 
 async function controlRecipes() {
@@ -26,21 +27,24 @@ async function controlRecipes() {
 }
 const controlSearchResults = async function () {
   try {
+    resultsView.renderSpinner();
+
     // get search query
     const query = searchView.getQuery();
     if (!query) return;
-    resultsView.renderSpinner();
+
     //load search results
     await model.loadSearchResults(query);
 
     //render results
+    resultsView.render(model.getSearchResultsPage(1));
 
-    resultsView.render(model.state.search.results);
+    //render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     throw error;
   }
 };
-controlSearchResults();
 const init = function () {
   recipeview.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
