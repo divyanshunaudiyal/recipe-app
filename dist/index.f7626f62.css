@@ -515,17 +515,6 @@ body {
   float: right;
 }
 
-.copyright {
-  color: #918581;
-  margin-top: 4rem;
-  padding: 0 3.5rem;
-  font-size: 1.2rem;
-}
-
-.copyright .twitter-link:link, .copyright .twitter-link:visited {
-  color: #918581;
-}
-
 .recipe {
   background-color: #f9f5f3;
 }

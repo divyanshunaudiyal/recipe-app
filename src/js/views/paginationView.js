@@ -9,53 +9,63 @@ class paginationView extends view {
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
+
     //page 1, there are more pages
     if (curPage == 1 && numPages > 1) {
-      return `
-      
-      <button class="btn--inline pagination__btn--next">
-      <span>PAGE ${curPage + 1}</span>
-      <svg class="search__icon">
-        <use href="${icons}svg#icon-arrow-right"></use>
-      </svg>
-    </button>
-      `;
+      return this._generateMarkupTextRight(curPage + 1);
     }
 
     //last page
     if (curPage == numPages && numPages > 1) {
-      return `
-      <button class="btn--inline pagination__btn--prev">
-      <svg class="search__icon">
-        <use href="${icons}svg#icon-arrow-left"></use>
-      </svg>
-      <span>PAGE ${curPage - 1}</span>
-    </button>
-      `;
+      return this._generateMarkupTextleft(curPage - 1);
     }
 
     //other page
     if (curPage > 1 && curPage < numPages) {
-      return `
+      return this._generateMarkupTextBoth(curPage);
+    }
+    //page 1 ,there are no more pages
+    return ``;
+  }
+
+  _generateMarkupTextRight(pageNum) {
+    return `
+    <button class="btn--inline pagination__btn--next">
+    <span>PAGE ${pageNum}</span>
+    <svg class="search__icon">
+      <use href="${icons}svg#icon-arrow-right"></use>
+    </svg>
+  </button>
+    `;
+  }
+  _generateMarkupTextleft(pageNum) {
+    return `
+      <button class="btn--inline pagination__btn--prev">
+      <svg class="search__icon">
+        <use href="${icons}svg#icon-arrow-left"></use>
+      </svg>
+      <span>PAGE ${pageNum}</span>
+    </button>
+      `;
+  }
+  _generateMarkupTextBoth(pageNum) {
+    return `
       
     <button class="btn--inline pagination__btn--prev">
       <svg class="search__icon">
         <use href="${icons}svg#icon-arrow-left"></use>
       </svg>
-      <span>PAGE ${curPage - 1}</span>
+      <span>PAGE ${pageNum - 1}</span>
     </button>
 
     <button class="btn--inline pagination__btn--next">
-      <span>PAGE ${curPage + 1}</span>
+      <span>PAGE ${pageNum + 1}</span>
       <svg class="search__icon">
         <use href="${icons}svg#icon-arrow-right"></use>
       </svg>
     </button>
 
     `;
-    }
-    //page 1 ,there are no more pages
-    return ``;
   }
 
   addHandlerCLick(handler) {
@@ -63,18 +73,9 @@ class paginationView extends view {
       .querySelector('.pagination')
       .addEventListener('click', function (e) {
         e.preventDefault();
-        // const buttonClassList = e.target.classList;
-
-        // // Check the classList to determine which button was clicked
-        // if (buttonClassList.contains('pagination__btn--prev')) {
-        //   // The previous button was clicked
-        //   console.log('Previous button clicked');
-        // } else if (buttonClassList.contains('pagination__btn--next')) {
-        //   // The next button was clicked
-        //   console.log('Next button clicked');
-        // }
 
         const btn = e.target.closest('.btn--inline');
+        if (!btn) return;
         // btn.innerText=PAGE 1,PAGE 2 ... PAGE N
         handler(+btn.innerText.slice(5)); //to eliminate 'PAGE ' from 'PAGE NO'
       });
