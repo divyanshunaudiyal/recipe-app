@@ -12,12 +12,12 @@ class paginationView extends view {
 
     //page 1, there are more pages
     if (curPage == 1 && numPages > 1) {
-      return this._generateMarkupTextRight(curPage + 1);
+      return this._generateMarkupTextRight(curPage);
     }
 
     //last page
     if (curPage == numPages && numPages > 1) {
-      return this._generateMarkupTextleft(curPage - 1);
+      return this._generateMarkupTextleft(curPage);
     }
 
     //other page
@@ -31,7 +31,7 @@ class paginationView extends view {
   _generateMarkupTextRight(pageNum) {
     return `
     <button class="btn--inline pagination__btn--next">
-    <span>PAGE ${pageNum}</span>
+    <span>PAGE ${pageNum + 1}</span>
     <svg class="search__icon">
       <use href="${icons}svg#icon-arrow-right"></use>
     </svg>
@@ -44,26 +44,15 @@ class paginationView extends view {
       <svg class="search__icon">
         <use href="${icons}svg#icon-arrow-left"></use>
       </svg>
-      <span>PAGE ${pageNum}</span>
+      <span>PAGE ${pageNum - 1}</span>
     </button>
       `;
   }
   _generateMarkupTextBoth(pageNum) {
     return `
       
-    <button class="btn--inline pagination__btn--prev">
-      <svg class="search__icon">
-        <use href="${icons}svg#icon-arrow-left"></use>
-      </svg>
-      <span>PAGE ${pageNum - 1}</span>
-    </button>
-
-    <button class="btn--inline pagination__btn--next">
-      <span>PAGE ${pageNum + 1}</span>
-      <svg class="search__icon">
-        <use href="${icons}svg#icon-arrow-right"></use>
-      </svg>
-    </button>
+   ${this._generateMarkupTextleft(pageNum)}
+   ${this._generateMarkupTextRight(pageNum)}
 
     `;
   }

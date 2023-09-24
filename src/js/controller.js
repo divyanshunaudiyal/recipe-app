@@ -55,10 +55,25 @@ const controlPagination = function (page) {
   paginationView.render(model.state.search);
 };
 
+//changing servings
+const controlServings = function (newServings) {
+  //change state servings
+  model.updateServings(newServings);
+
+  //update recipeView
+  recipeview.render(model.state.recipe);
+};
 const init = function () {
   recipeview.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerCLick(controlPagination);
+  recipeview._addHandlerUpdatedServings(controlServings);
+  // console.log(model.state.recipe.servings);
 };
-
 init();
+// init().then(() =>
+//   recipeview._addHandlerUpdatedServings(
+//     controlServings,
+//     model.state.recipe.servings
+//   )
+// );

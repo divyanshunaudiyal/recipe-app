@@ -575,7 +575,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"aenu9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _webImmediateJs = require("core-js/modules/web.immediate.js");
+var _webImmediateJs = require("core-js/modules/web.immediate.js"); // init().then(() =>
+ //   recipeview._addHandlerUpdatedServings(
+ //     controlServings,
+ //     model.state.recipe.servings
+ //   )
+ // );
 var _modelJs = require("./model.js");
 var _runtime = require("regenerator-runtime/runtime");
 var _recipeViewJs = require("./views/recipeView.js");
@@ -623,10 +628,19 @@ const controlPagination = function(page) {
     //render new pagination buttons
     (0, _paginationViewJsDefault.default).render(_modelJs.state.search);
 };
+//changing servings
+const controlServings = function(newServings) {
+    //change state servings
+    _modelJs.updateServings(newServings);
+    //update recipeView
+    (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
+};
 const init = function() {
     (0, _recipeViewJsDefault.default).addHandlerRender(controlRecipes);
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     (0, _paginationViewJsDefault.default).addHandlerCLick(controlPagination);
+    (0, _recipeViewJsDefault.default)._addHandlerUpdatedServings(controlServings);
+// console.log(model.state.recipe.servings);
 };
 init();
 
@@ -2496,6 +2510,7 @@ parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
+parcelHelpers.export(exports, "updateServings", ()=>updateServings);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
 var _helpers = require("./helpers");
@@ -2548,6 +2563,13 @@ const getSearchResultsPage = function(page = state.search.page) {
     const end = page * state.search.resultsPerPage;
     return state.search.results.slice(start, end);
 };
+const updateServings = function(newServings) {
+    state.recipe.ingredients.forEach((element)=>{
+        element.quantity = element.quantity * newServings / state.recipe.servings;
+    // new quantity= oldQuantity *newServings / oldServings
+    });
+    state.recipe.servings = newServings;
+};
 
 },{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs","./helpers":"hGI1E"}],"k5Hzs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2597,8 +2619,6 @@ class RecipeView extends (0, _viewDefault.default) {
     _errorMessage = " Recipe couldn't be found ";
     _message = " ";
     addHandlerRender(handler) {
-        // window.addEventListener('hashchange', controlRecipes);
-        // window.addEventListener('load', controlRecipes);
         [
             "load",
             "hashchange"
@@ -2629,12 +2649,14 @@ class RecipeView extends (0, _viewDefault.default) {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button id = "decrease" class="btn--tiny btn--update-servings" 
+              data-updateServingsTo="${this._data.servings - 1}">
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}svg#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button id="increase" class="btn--tiny btn--update-servings"
+              data-updateServingsTo="${this._data.servings + 1}">
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}svg#icon-plus-circle"></use>
                 </svg>
@@ -2695,6 +2717,15 @@ class RecipeView extends (0, _viewDefault.default) {
         </li>
 
       `;
+    }
+    _addHandlerUpdatedServings(handler) {
+        this._parentElement.addEventListener("click", function(e) {
+            e.preventDefault();
+            const btn = e.target.closest(".btn--update-servings");
+            if (!btn) return;
+            const { updateservingsto } = btn.dataset;
+            if (+updateservingsto > 0) handler(+updateservingsto);
+        });
     }
 }
 exports.default = new RecipeView();
@@ -2865,9 +2896,9 @@ class paginationView extends (0, _viewDefault.default) {
         const curPage = this._data.page;
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
         //page 1, there are more pages
-        if (curPage == 1 && numPages > 1) return this._generateMarkupTextRight(curPage + 1);
+        if (curPage == 1 && numPages > 1) return this._generateMarkupTextRight(curPage);
         //last page
-        if (curPage == numPages && numPages > 1) return this._generateMarkupTextleft(curPage - 1);
+        if (curPage == numPages && numPages > 1) return this._generateMarkupTextleft(curPage);
         //other page
         if (curPage > 1 && curPage < numPages) return this._generateMarkupTextBoth(curPage);
         //page 1 ,there are no more pages
@@ -2876,7 +2907,7 @@ class paginationView extends (0, _viewDefault.default) {
     _generateMarkupTextRight(pageNum) {
         return `
     <button class="btn--inline pagination__btn--next">
-    <span>PAGE ${pageNum}</span>
+    <span>PAGE ${pageNum + 1}</span>
     <svg class="search__icon">
       <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-right"></use>
     </svg>
@@ -2889,26 +2920,15 @@ class paginationView extends (0, _viewDefault.default) {
       <svg class="search__icon">
         <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-left"></use>
       </svg>
-      <span>PAGE ${pageNum}</span>
+      <span>PAGE ${pageNum - 1}</span>
     </button>
       `;
     }
     _generateMarkupTextBoth(pageNum) {
         return `
       
-    <button class="btn--inline pagination__btn--prev">
-      <svg class="search__icon">
-        <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-left"></use>
-      </svg>
-      <span>PAGE ${pageNum - 1}</span>
-    </button>
-
-    <button class="btn--inline pagination__btn--next">
-      <span>PAGE ${pageNum + 1}</span>
-      <svg class="search__icon">
-        <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-right"></use>
-      </svg>
-    </button>
+   ${this._generateMarkupTextleft(pageNum)}
+   ${this._generateMarkupTextRight(pageNum)}
 
     `;
     }
