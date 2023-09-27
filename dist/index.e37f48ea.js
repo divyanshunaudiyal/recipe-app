@@ -2636,14 +2636,14 @@ class RecipeView extends (0, _viewDefault.default) {
         <div class="recipe__details">
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="${0, _iconsSvgDefault.default}svg#icon-clock"></use>
+              <use href="${0, _iconsSvgDefault.default}/svg#icon-clock"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--minutes">${this._data.cookingTime}</span>
             <span class="recipe__info-text">minutes</span>
           </div>
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="${0, _iconsSvgDefault.default}svg#icon-users"></use>
+              <use href="${0, _iconsSvgDefault.default}/svg#icon-users"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
             <span class="recipe__info-text">servings</span>
@@ -2652,13 +2652,13 @@ class RecipeView extends (0, _viewDefault.default) {
               <button id = "decrease" class="btn--tiny btn--update-servings" 
               data-updateServingsTo="${this._data.servings - 1}">
                 <svg>
-                  <use href="${0, _iconsSvgDefault.default}svg#icon-minus-circle"></use>
+                  <use href="${0, _iconsSvgDefault.default}/svg#icon-minus-circle"></use>
                 </svg>
               </button>
               <button id="increase" class="btn--tiny btn--update-servings"
               data-updateServingsTo="${this._data.servings + 1}">
                 <svg>
-                  <use href="${0, _iconsSvgDefault.default}svg#icon-plus-circle"></use>
+                  <use href="${0, _iconsSvgDefault.default}/svg#icon-plus-circle"></use>
                 </svg>
               </button>
             </div>
@@ -2669,7 +2669,7 @@ class RecipeView extends (0, _viewDefault.default) {
           </div>
           <button class="btn--round">
             <svg class="">
-              <use href="${0, _iconsSvgDefault.default}svg#icon-bookmark-fill"></use>
+              <use href="${0, _iconsSvgDefault.default}/svg#icon-bookmark-fill"></use>
             </svg>
           </button>
         </div>
@@ -2698,7 +2698,7 @@ class RecipeView extends (0, _viewDefault.default) {
           >
             <span>Directions</span>
             <svg class="search__icon">
-              <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-right"></use>
+              <use href="${0, _iconsSvgDefault.default}/svg#icon-arrow-right"></use>
             </svg>
           </a>
         </div>`;
@@ -2707,7 +2707,7 @@ class RecipeView extends (0, _viewDefault.default) {
         return `
         <li class="recipe__ingredient">
             <svg class="recipe__icon">
-              <use href="${0, _iconsSvgDefault.default}svg#icon-check"></use>
+              <use href="${0, _iconsSvgDefault.default}/svg#icon-check"></use>
             </svg>
             <div class="recipe__quantity">${ing.quantity}</div>
             <div class="recipe__description">
@@ -2788,7 +2788,7 @@ class view {
     renderSpinner() {
         const markup = `<div class="spinner">
       <svg>
-        <use href="${(0, _iconsSvgDefault.default)}svg#icon-loader"></use>
+        <use href="${(0, _iconsSvgDefault.default)}/svg#icon-loader"></use>
       </svg>
       </div> `;
         this._clear();
@@ -2800,7 +2800,7 @@ class view {
       <div class="error">
               <div>
                 <svg>
-                  <use href="${(0, _iconsSvgDefault.default)}svg#icon-alert-triangle"></use>
+                  <use href="${(0, _iconsSvgDefault.default)}/svg#icon-alert-triangle"></use>
                 </svg>
               </div>
               <p>------------${msg}------------- </p>
@@ -2815,7 +2815,7 @@ class view {
       <div class="message">
               <div>
                 <svg>
-                  <use href="${(0, _iconsSvgDefault.default)}svg#icon-smile"></use>
+                  <use href="${(0, _iconsSvgDefault.default)}/svg#icon-smile"></use>
                 </svg>
               </div>
               <p>------------${msg}------------- </p>
@@ -2909,7 +2909,7 @@ class paginationView extends (0, _viewDefault.default) {
     <button class="btn--inline pagination__btn--next">
     <span>PAGE ${pageNum + 1}</span>
     <svg class="search__icon">
-      <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-right"></use>
+      <use href="${0, _iconsSvgDefault.default}/svg#icon-arrow-right"></use>
     </svg>
   </button>
     `;
@@ -2918,7 +2918,7 @@ class paginationView extends (0, _viewDefault.default) {
         return `
       <button class="btn--inline pagination__btn--prev">
       <svg class="search__icon">
-        <use href="${0, _iconsSvgDefault.default}svg#icon-arrow-left"></use>
+        <use href="${0, _iconsSvgDefault.default}/svg#icon-arrow-left"></use>
       </svg>
       <span>PAGE ${pageNum - 1}</span>
     </button>

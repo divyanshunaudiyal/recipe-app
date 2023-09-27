@@ -25,7 +25,7 @@ class RecipeView extends view {
         <div class="recipe__details">
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="${icons}svg#icon-clock"></use>
+              <use href="${icons}/svg#icon-clock"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--minutes">${
               this._data.cookingTime
@@ -34,7 +34,7 @@ class RecipeView extends view {
           </div>
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="${icons}svg#icon-users"></use>
+              <use href="${icons}/svg#icon-users"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--people">${
               this._data.servings
@@ -45,13 +45,13 @@ class RecipeView extends view {
               <button id = "decrease" class="btn--tiny btn--update-servings" 
               data-updateServingsTo="${this._data.servings - 1}">
                 <svg>
-                  <use href="${icons}svg#icon-minus-circle"></use>
+                  <use href="${icons}/svg#icon-minus-circle"></use>
                 </svg>
               </button>
               <button id="increase" class="btn--tiny btn--update-servings"
               data-updateServingsTo="${this._data.servings + 1}">
                 <svg>
-                  <use href="${icons}svg#icon-plus-circle"></use>
+                  <use href="${icons}/svg#icon-plus-circle"></use>
                 </svg>
               </button>
             </div>
@@ -62,7 +62,7 @@ class RecipeView extends view {
           </div>
           <button class="btn--round">
             <svg class="">
-              <use href="${icons}svg#icon-bookmark-fill"></use>
+              <use href="${icons}/svg#icon-bookmark-fill"></use>
             </svg>
           </button>
         </div>
@@ -95,7 +95,7 @@ class RecipeView extends view {
           >
             <span>Directions</span>
             <svg class="search__icon">
-              <use href="${icons}svg#icon-arrow-right"></use>
+              <use href="${icons}/svg#icon-arrow-right"></use>
             </svg>
           </a>
         </div>`;
@@ -104,7 +104,7 @@ class RecipeView extends view {
     return `
         <li class="recipe__ingredient">
             <svg class="recipe__icon">
-              <use href="${icons}svg#icon-check"></use>
+              <use href="${icons}/svg#icon-check"></use>
             </svg>
             <div class="recipe__quantity">${ing.quantity}</div>
             <div class="recipe__description">
