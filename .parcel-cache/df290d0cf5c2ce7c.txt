@@ -127,7 +127,7 @@
 141D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\caniuse-lite\data\features\lazyload.js133403461104932825 0
 139D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\core-js\actual\number\parse-float.js133403461147026518 0
 127D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\entities\lib\encode.d.ts133403461066783037 0
-110D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\src\js\views\view.js133403516054449518 0
+110D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\src\js\views\view.js133403518456431730 0
 144D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\core-js\features\object\iterate-values.js133403461141588440 0
 128D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\supports-color\browser.js133403461047901479 0
 107D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\src\js\helpers.js133395237584696217 0
@@ -259,7 +259,7 @@
 140D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\csso\node_modules\css-tree\cjs\parser133403461081364237 1
 135D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\lmdb\node_modules\node-addon-api133403461062912705 1
 161D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\csso\node_modules\css-tree\cjs\syntax\atrule\font-face.cjs133403461071533423 0
-102D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\src\js\views133397809614761845 1
+102D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\src\js\views133403518335747285 1
 124D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\svgo\lib\svgo-node.js133403461076453818 0
 127D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\js-yaml\lib\type\bool.js133403461050101670 0
 137D:\complete-javascript-course-master\complete-javascript-course-master\18-forkify\starter\node_modules\core-js\modules\es.date.to-json.js133403461102822976 0
