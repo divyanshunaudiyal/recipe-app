@@ -1,5 +1,5 @@
 import view from './view';
-import icons rom 'url:../../img/icons.vg';
+import icons from 'url:../../img/icons.svg';
 
 class RecipeView extends view {
   _parentElement = document.querySelector('.recipe');
