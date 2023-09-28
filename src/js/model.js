@@ -14,6 +14,7 @@ export const state = {
 //function for fetching data from api and update state object
 export const loadRecipe = async function (id) {
   try {
+    if (!id) return;
     const data = await getJSON(`${API_URL}${id}`);
 
     const { recipe } = data.data;
@@ -35,6 +36,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
+    if (!query) return;
     const data = await getJSON(`${API_URL}?search=${query}`);
 
     state.search.results = data.data.recipes.map(elem => {

@@ -3,7 +3,8 @@
   background-color: $color-grey-light-1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 5rem;
 
   &__logo {
     margin-left: 4rem;

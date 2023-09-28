@@ -61,8 +61,6 @@ class paginationView extends view {
     document
       .querySelector('.pagination')
       .addEventListener('click', function (e) {
-        e.preventDefault();
-
         const btn = e.target.closest('.btn--inline');
         if (!btn) return;
         // btn.innerText=PAGE 1,PAGE 2 ... PAGE N

@@ -27,11 +27,10 @@ async function controlRecipes() {
 }
 const controlSearchResults = async function () {
   try {
-    resultsView.renderSpinner();
-
     // get search query
     const query = searchView.getQuery();
     if (!query) return;
+    resultsView.renderSpinner();
 
     //load search results
     await model.loadSearchResults(query);
@@ -71,9 +70,3 @@ const init = function () {
   // console.log(model.state.recipe.servings);
 };
 init();
-// init().then(() =>
-//   recipeview._addHandlerUpdatedServings(
-//     controlServings,
-//     model.state.recipe.servings
-//   )
-// );
