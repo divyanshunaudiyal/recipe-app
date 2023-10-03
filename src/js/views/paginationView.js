@@ -33,7 +33,7 @@ class paginationView extends view {
     <button class="btn--inline pagination__btn--next">
     <span>PAGE ${pageNum + 1}</span>
     <svg class="search__icon">
-      <use href="${icons}svg#icon-arrow-right"></use>
+      <use href="${icons}#icon-arrow-right"></use>
     </svg>
   </button>
     `;
@@ -42,7 +42,7 @@ class paginationView extends view {
     return `
       <button class="btn--inline pagination__btn--prev">
       <svg class="search__icon">
-        <use href="${icons}svg#icon-arrow-left"></use>
+        <use href="${icons}#icon-arrow-left"></use>
       </svg>
       <span>PAGE ${pageNum - 1}</span>
     </button>
